@@ -51,7 +51,6 @@ function genereteCircle(){
     newCircle.addEventListener('click',function(){
         gameBoard.innerHTML = '';
         genereteCircle();
-        
 ////            var counter = circles.length / actualTime;
 ////            speed.innerHTML = counter + ' clicks/s';
 //            if(counter > actualRecord){
