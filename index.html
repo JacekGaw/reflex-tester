@@ -3,23 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <title>Shooter game</title>
+    <script src="https://kit.fontawesome.com/089d103275.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
+    
 </head>
 <body>
-    
-    <section class="start-template">
-        <header>
-            <h1>Reflex testerrrrr</h1>
-            <p>You think that you are fast and have a good reflex? Try yourself in this game!</p>
-            <div class="buttons-container">
-                <button class="game-button" id="start-15-game">15 seconds game</button>
-                <button class="game-button" id="start-30-game">30 seconds game</button>
-                <button class="game-button" id="start-1-game">1 minute game</button>
-            </div>
-        </header>
-    </section>
+    <main class="start-template">
+        <section class="row">
+            <section class="panel__left">
+                <h1>reflex tester</h1>
+                <h3>Myślisz, że szybko i celnie klikasz? Masz dobry refleks i błyskawiczną reakcję?
+                    Sprawdź się tutaj i przekonaj się czy aby na pewno tak jest!
+                </h3>
+                <section class="chose__panel">
+                    <h5>Wybierz wariant czasowy:</h5>
+                    <button class="chose__button" id="start-15-game">15 sekund</button><br>
+                    <button class="chose__button" id="start-30-game">30 sekund</button><br>
+                    <button class="chose__button" id="start-1-game">1 minuta</button><br>
+                </section>
+            </section>
+            <section class="panel__right">
+                <h3>Skala</h3>
+                <section class="right__row">
+                    <section class="row__left">
+                            <i class="fas fa-mouse-pointer table__icon"></i>
+                            <table>
+                                <tr>
+                                    <th>c/min</th>
+                                    <th>Rate</th>
+                                </tr>
+                                <tr>
+                                    <td> < 30</td>
+                                    <td><i class="far fa-frown"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>30 - 45</td>
+                                    <td><i class="far fa-meh"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>45 - 60</td>
+                                    <td><i class="far fa-smile"></i></td>
+                                </tr>
+                                <tr>
+                                    <td> > 60</td>
+                                    <td><i class="far fa-laugh"></i></td>
+                                </tr>
+                            </table>
+                    </section>
+                    <section class="row__right">
+                            <i class="fas fa-fingerprint table__icon"></i>
+                            <table>
+                                <tr>
+                                    <th>c/min</th>
+                                    <th>Rate</th>
+                                </tr>
+                                <tr>
+                                    <td> < 30</td>
+                                    <td><i class="far fa-frown"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>30 - 45</td>
+                                    <td><i class="far fa-meh"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>45 - 60</td>
+                                    <td><i class="far fa-smile"></i></td>
+                                </tr>
+                                <tr>
+                                    <td> > 60</td>
+                                    <td><i class="far fa-laugh"></i></td>
+                                </tr>
+                            </table>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <footer class="footer">
+            <p><a href="https://github.com/JacekGaw/reflex-tester/" target="_blank">Check it out on GitHub :)</a></p>
+            <p>Made with <i class="fas fa-heart"></i> from Jacek Gawlyta</p>
+        </footer>
+    </main>
 
     <div class="time" id="time"></div>
 <!--        <span class="speed" id="speed"></span>-->
