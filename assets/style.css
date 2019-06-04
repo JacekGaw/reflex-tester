@@ -5,9 +5,8 @@
 }
 body {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     font-size: 24px;
-    overflow: hidden;
     font-family: 'Roboto', sans-serif;
 }
 .game-place {
@@ -17,6 +16,7 @@ body {
     overflow: hidden;
     position: relative;
     z-index: 0;
+    display: none;
 }
 .circle {
     position: absolute;
@@ -30,11 +30,12 @@ body {
     display: flex;
     width: 100%;
     min-height: 100vh;
+    overflow: hidden;
 }
 .panel__left{
     flex: 1 1 50%;
     background-color: #fff;
-    height: 100%;
+    min-height: 100vh;
     text-align: center;
 }
 .panel__left h1 {
@@ -94,6 +95,7 @@ body {
     padding: 5% 2% 10% 7%;
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 15% 100%);
     text-align: center;
+    position: relative;
 }
 .panel__right h3 {
     font-weight: 500;
@@ -127,10 +129,12 @@ td .far {
 }
 .footer {
     width: 100%;
-    position: fixed;
-    bottom: 0;
+    right: 0;
+    position: absolute;
+    bottom: 0%;
     text-align: right;
     font-size: 0.8rem;
+    z-index: 20;
 }
 .footer p:nth-child(2) {
     padding: 5px 15px 15px 15px;
@@ -139,4 +143,51 @@ td .far {
 .footer p a {
     padding-right: 15px;
     color: #222222;
+}
+
+@media (max-width: 1100px){
+    .chose__button {
+        width: 300px;
+    }
+    th {
+        font-size: 1rem;
+        padding: 10%;
+    }
+    td {
+        font-size: 0.9rem;
+        padding: 10%;
+    }
+    td .far {
+        font-size: 1.4rem;
+    }
+    .panel__left h1 {
+        font-size: 2.5rem;
+    }
+    .panel__left {
+        flex: 0 1 70%;
+    }
+    .panel__right {
+        flex: 0 1 30%;
+    }
+}
+@media (max-width: 900px){
+    .row {
+        flex-direction: column;
+        position: relative;
+    }
+    .panel__right {
+        position: fixed;
+        bottom: -420px;
+        height: 500px;
+        width: 100%;
+        clip-path: polygon(0% 5%, 100% 0%, 100% 100%, 0% 100%);
+        transition: 0.3s ease-in;
+    }
+    .panel__right:hover {
+        bottom: 0;
+    }
+    .panel__right h3 {
+        margin-top: 10px;
+        margin-bottom: 40px;
+    }
 }
