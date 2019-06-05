@@ -18,14 +18,17 @@ start30SButton.addEventListener('click', startGame);
 
 function startGame(){
     if(this == start1MButton){
+        gameBoard.style.display = 'block';
         actualTime = 60;
         seconds = 60;
     }
     else if(this == start30SButton){
+        gameBoard.style.display = 'block';
         actualTime = 30;
         seconds = 30;
     }
     else if(this == start15SButton){
+        gameBoard.style.display = 'block';
         actualTime = 15;
         seconds = 15;
     }
@@ -66,20 +69,23 @@ function startTime(){
         actualTime--;
     }
     else {
-        gameBoard.innerHTML = ' ';
-        console.log(circles.length);
-        clearInterval(timeInterval);
-        statistics.innerHTML = (circles.length / seconds) + 'clicks/s, congratulations!';
-        for(var i = 0; i < circles.length; i++){
-            gameBoard.innerHTML += '<div class="circle circle'+i+'"></div>';
-            gameBoard.innerHTML += '<div class="circle circle'+circles.length+'"></div>';
-            var newCircle = document.querySelector(".circle"+i+"");
-            newCircle.style.top = circles[i].top;
-            newCircle.style.left = circles[i].left;
-            newCircle.style.backgroundColor = circles[i].color;
-            newCircle.style.width = circles[i].size;
-            newCircle.style.height = circles[i].size;
-        }
+        endGame();
+    }
+}
+
+function endGame(){
+    gameBoard.innerHTML = ' ';
+    console.log(circles.length);
+    clearInterval(timeInterval);
+    statistics.innerHTML = (circles.length / seconds) + 'clicks/s, congratulations!';
+    for(var i = 0; i < circles.length; i++){
+        gameBoard.innerHTML += '<div class="circle circle'+i+'"></div>';
+        var newCircle = document.querySelector(".circle"+i+"");
+        newCircle.style.top = circles[i].top;
+        newCircle.style.left = circles[i].left;
+        newCircle.style.backgroundColor = circles[i].color;
+        newCircle.style.width = circles[i].size;
+        newCircle.style.height = circles[i].size;
     }
 }
 

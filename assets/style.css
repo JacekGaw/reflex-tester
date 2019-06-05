@@ -10,13 +10,27 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 .game-place {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    min-height: 100vh;
-    background-color: #444;
+    height: 100vh;
+    background-color: #007777;
     overflow: hidden;
     position: relative;
     z-index: 0;
     display: none;
+    padding: 50px;
+}
+.time {
+    position: absolute;
+    z-index: 1;
+    font-family: 'Audiowide', cursive;
+    font-size: 4rem;
+    opacity: 0.5;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .circle {
     position: absolute;
@@ -25,6 +39,8 @@ body {
     padding: 1%;
     transform: translate(-50%,-50%);
     cursor: pointer;
+    box-shadow: 0 0 5px #00dddd;
+    z-index: 5;
 }
 .row {
     display: flex;
