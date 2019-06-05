@@ -5,8 +5,13 @@ var statistics = document.querySelector('#statistics');
 var gameBoard = document.querySelector('#game-place');
 var startTemplate = document.querySelector('.start-template');
 var time = document.querySelector('#time');
-//var speed = document.querySelector('#speed');
-//var record = document.querySelector('#record');
+var speedOutput = document.querySelector('#speed_count');
+var speed;
+var clicksCounterOutput = document.querySelector('#clicks_count');
+var clicksCount = 0;
+var levelOutput = document.querySelector('#level');
+var level = ["frown","meh","smile","laugh"];
+var commentOutput = document.querySelector('#comment');
 var actualTime;
 var circles = [];
 var timeInterval;
@@ -52,6 +57,8 @@ function genereteCircle(){
     newCircle.style.width = circles[circles.length-1].size;
     newCircle.style.height = circles[circles.length-1].size;
     newCircle.addEventListener('click',function(){
+        clicksCount += 1;
+        console.log(clicksCount);
         gameBoard.innerHTML = '';
         genereteCircle();
 ////            var counter = circles.length / actualTime;
@@ -75,9 +82,9 @@ function startTime(){
 
 function endGame(){
     gameBoard.innerHTML = ' ';
-    console.log(circles.length);
+    // console.log(circles.length);
     clearInterval(timeInterval);
-    statistics.innerHTML = (circles.length / seconds) + 'clicks/s, congratulations!';
+    genereteStatistics();
     for(var i = 0; i < circles.length; i++){
         gameBoard.innerHTML += '<div class="circle circle'+i+'"></div>';
         var newCircle = document.querySelector(".circle"+i+"");
@@ -89,13 +96,37 @@ function endGame(){
     }
 }
 
+function genereteStatistics(){
+    document.querySelector('.game-statistics').style.display = 'block';
+    clicksCounterOutput.innerHTML = clicksCount + " kliknięć";
+    speed = ((clicksCount / seconds)*60);
+    speedOutput.innerHTML = speed + " kliknięć/min";
+    var nrCom = Math.floor(Math.random()*4);
+    if(speed < 30){
+        levelOutput.innerHTML = '<i class="far fa-' + level[0] + '"></i>';
+        commentOutput.innerHTML = commentsBad[nrCom];
+    }
+    else if(speed >= 30 && speed < 45){
+        levelOutput.innerHTML = '<i class="far fa-' + level[1] + '"></i>';
+        commentOutput.innerHTML = commentsNeutral[nrCom];
+    }
+    else if(speed >= 45 && speed < 60){
+        levelOutput.innerHTML = '<i class="far fa-' + level[2] + '"></i>';
+        commentOutput.innerHTML = commentsGood[nrCom];
+    }
+    else{
+        levelOutput.innerHTML = '<i class="far fa-' + level[3] + '"></i>';
+        commentOutput.innerHTML = commentsBest[nrCom];
+    }
+}
+
 function randomParameters(par){
     switch(par){
         case 'top':
-            return Math.floor((Math.random()*100)+1);
+            return Math.floor((Math.random()*90)+5);
             break;
         case 'left': 
-            return Math.floor((Math.random()*100)+1);
+            return Math.floor((Math.random()*90)+5);
             break;
         case 'r': 
             return Math.floor((Math.random()*255)+10);
@@ -110,4 +141,27 @@ function randomParameters(par){
             return Math.floor((Math.random()*50)+10);
     }
 }
-
+var commentsBad = [
+    "Niestety, przed Tobą daleka droga aby móc powiedzieć, że jesteś prawdziwym bogiem refleksu",
+    "Spokojnie, to że zasnąłeś w połowie testu nie oznacza, że nie możesz spróbować ponownie!",
+    "Ćwicz, ćwicz, ćwicz i jeszcze raz ćwicz, a będzie z Ciebie mistrz",
+    "Pamiętaj, ostatni będą pierwszymi! Po wielu wielu latach..."
+];
+var commentsNeutral = [
+    "Widywałem gorszych od Ciebie ale mistrzostwo świata to to jeszcze nie jest",
+    "Lepiej od mojego 2 letniego kuzyna ale do drugiego 7-letniego Ci jeszcze brakuje",
+    "Przynajmniej nie jesteś najgorszy... Trochę praktyki, a będzie można pogratulować",
+    "Rozpędzasz się, dogrzej jeszcze palce, wypij monsterka na koncentrację i lecisz dalej!"
+];
+var commentsGood = [
+    "Mmm ktoś już tu jest trochę doświadczony! PRAWIE mistrzowski poziom",
+    "Tylko parę kliknięć dzieliło Cię od zostania mistrzem... Może następnym razem!",
+    "Depczesz klasie mistrzowskiej po piętach, oby tak dalej!",
+    "Możesz już bez wstydu pochwalić się tym wynikiem przed mamą, GRATULACJE"
+];
+var commentsBest = [
+    "Lepiej już być nie może oficjalny MISTRZU",
+    "Położyłeś konkurencję na łopatki, światowa klasa",
+    "No i to się nazywa refleks! Możesz śmiało mówić o sobie 'Szybki Bill'",
+    "Osobiście jako twórca biję pokłony i gratuluję sukcesu!"
+];
