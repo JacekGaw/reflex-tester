@@ -16,8 +16,7 @@ var actualTime;
 var circles = [];
 var timeInterval;
 var seconds;
-var deviceOutput = document.querySelector('#device');
-var device;
+var device = "click";
 var variant;
 
 start1MButton.addEventListener('touchstart', startOnTouch);
@@ -114,10 +113,17 @@ function endGame(){
 
 function genereteStatistics(){
     statistics.style.display = 'block';
+    time.style.display = 'none';
     clicksCounterOutput.innerHTML = clicksCount + " kliknięć";
     speed = ((clicksCount / seconds)*60);
     speedOutput.innerHTML = speed + " kliknięć/min";
-    deviceOutput.innerHTML = device;
+    if (device == "click")
+        statisticsToCliks();
+    else if(device == "touch")
+        statisticsToTouch();
+}
+
+function statisticsToCliks() {
     var nrCom = Math.floor(Math.random()*4);
     if(speed < 30){
         levelOutput.innerHTML = '<i class="far fa-' + level[0] + '"></i>';
@@ -135,9 +141,25 @@ function genereteStatistics(){
         levelOutput.innerHTML = '<i class="far fa-' + level[3] + '"></i>';
         commentOutput.innerHTML = commentsBest[nrCom];
     }
-    document.querySelector('#home_button').addEventListener("touchstart", function(){
-        commentOutput.innerHTML = "właśnie dotknięto ekranu";
-    });
+}
+function statisticsToTouch(){
+    var nrCom = Math.floor(Math.random()*4);
+    if(speed < 50){
+        levelOutput.innerHTML = '<i class="far fa-' + level[0] + '"></i>';
+        commentOutput.innerHTML = commentsBad[nrCom];
+    }
+    else if(speed >= 50 && speed < 75){
+        levelOutput.innerHTML = '<i class="far fa-' + level[1] + '"></i>';
+        commentOutput.innerHTML = commentsNeutral[nrCom];
+    }
+    else if(speed >= 75 && speed < 100){
+        levelOutput.innerHTML = '<i class="far fa-' + level[2] + '"></i>';
+        commentOutput.innerHTML = commentsGood[nrCom];
+    }
+    else{
+        levelOutput.innerHTML = '<i class="far fa-' + level[3] + '"></i>';
+        commentOutput.innerHTML = commentsBest[nrCom];
+    }
 }
 
 function goToHomepage() {
