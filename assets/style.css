@@ -10,7 +10,6 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 .game-place {
-    
     top: 0;
     left: 0;
     width: 100%;
@@ -26,11 +25,10 @@ body {
     position: absolute;
     z-index: 1;
     font-family: 'Audiowide', cursive;
-    font-size: 4rem;
+    font-size: 2rem;
     opacity: 0.5;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 10px;
+    top: 5px;
 }
 .game-statistics {
     position: absolute;

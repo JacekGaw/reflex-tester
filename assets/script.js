@@ -20,17 +20,18 @@ var deviceOutput = document.querySelector('#device');
 var device;
 var variant;
 
-start1MButton.addEventListener('touch', startOnTouch);
-start15SButton.addEventListener('touch', startOnTouch);
-start30SButton.addEventListener('touch', startOnTouch);
+start1MButton.addEventListener('touchstart', startOnTouch);
+start15SButton.addEventListener('touchstart', startOnTouch);
+start30SButton.addEventListener('touchstart', startOnTouch);
 
 start1MButton.addEventListener('click', startOnClick);
 start15SButton.addEventListener('click', startOnClick);
 start30SButton.addEventListener('click', startOnClick);
 
+document.querySelector('#home_button').addEventListener('click',goToHomepage);
+
 function startOnClick(){
     variant = this;
-    device = "click";
     startGame(variant);
 }
 function startOnTouch(){
@@ -55,8 +56,13 @@ function startGame(vrnt){
         seconds = 15;
     }
     startTemplate.style.display = 'none';
+    setTimeout(removeIntro,1000);
     setTimeout(genereteCircle,1000);
     timeInterval = setInterval(startTime,1000);
+}
+
+function removeIntro(){
+    document.querySelector('.game__intro').style.display = "none";
 }
 
 function genereteCircle(){
@@ -107,7 +113,7 @@ function endGame(){
 }
 
 function genereteStatistics(){
-    document.querySelector('.game-statistics').style.display = 'block';
+    statistics.style.display = 'block';
     clicksCounterOutput.innerHTML = clicksCount + " kliknięć";
     speed = ((clicksCount / seconds)*60);
     speedOutput.innerHTML = speed + " kliknięć/min";
@@ -132,6 +138,10 @@ function genereteStatistics(){
     document.querySelector('#home_button').addEventListener("touchstart", function(){
         commentOutput.innerHTML = "właśnie dotknięto ekranu";
     });
+}
+
+function goToHomepage() {
+    location.reload();
 }
 
 function randomParameters(par){
