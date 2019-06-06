@@ -16,23 +16,40 @@ var actualTime;
 var circles = [];
 var timeInterval;
 var seconds;
+var deviceOutput = document.querySelector('#device');
+var device;
+var variant;
 
-start1MButton.addEventListener('click', startGame);
-start15SButton.addEventListener('click', startGame);
-start30SButton.addEventListener('click', startGame);
+start1MButton.addEventListener('touch', startOnTouch);
+start15SButton.addEventListener('touch', startOnTouch);
+start30SButton.addEventListener('touch', startOnTouch);
 
-function startGame(){
-    if(this == start1MButton){
+start1MButton.addEventListener('click', startOnClick);
+start15SButton.addEventListener('click', startOnClick);
+start30SButton.addEventListener('click', startOnClick);
+
+function startOnClick(){
+    variant = this;
+    device = "click";
+    startGame(variant);
+}
+function startOnTouch(){
+    variant = this;
+    device = "touch";
+    startGame(variant);
+}
+function startGame(vrnt){
+    if(vrnt == start1MButton){
         gameBoard.style.display = 'block';
         actualTime = 60;
         seconds = 60;
     }
-    else if(this == start30SButton){
+    else if(vrnt == start30SButton){
         gameBoard.style.display = 'block';
         actualTime = 30;
         seconds = 30;
     }
-    else if(this == start15SButton){
+    else if(vrnt == start15SButton){
         gameBoard.style.display = 'block';
         actualTime = 15;
         seconds = 15;
@@ -61,12 +78,6 @@ function genereteCircle(){
         console.log(clicksCount);
         gameBoard.innerHTML = '';
         genereteCircle();
-////            var counter = circles.length / actualTime;
-////            speed.innerHTML = counter + ' clicks/s';
-//            if(counter > actualRecord){
-//                actualRecord = counter;
-//            }
-//            record.innerHTML = actualRecord + " clicks/s is your best!";
     });
 }
 
@@ -82,7 +93,6 @@ function startTime(){
 
 function endGame(){
     gameBoard.innerHTML = ' ';
-    // console.log(circles.length);
     clearInterval(timeInterval);
     genereteStatistics();
     for(var i = 0; i < circles.length; i++){
@@ -101,6 +111,7 @@ function genereteStatistics(){
     clicksCounterOutput.innerHTML = clicksCount + " kliknięć";
     speed = ((clicksCount / seconds)*60);
     speedOutput.innerHTML = speed + " kliknięć/min";
+    deviceOutput.innerHTML = device;
     var nrCom = Math.floor(Math.random()*4);
     if(speed < 30){
         levelOutput.innerHTML = '<i class="far fa-' + level[0] + '"></i>';
@@ -118,6 +129,9 @@ function genereteStatistics(){
         levelOutput.innerHTML = '<i class="far fa-' + level[3] + '"></i>';
         commentOutput.innerHTML = commentsBest[nrCom];
     }
+    document.querySelector('#home_button').addEventListener("touchstart", function(){
+        commentOutput.innerHTML = "właśnie dotknięto ekranu";
+    });
 }
 
 function randomParameters(par){
@@ -138,7 +152,10 @@ function randomParameters(par){
             return Math.floor((Math.random()*255)+10);
             break;
         case 'size':
+            if(window.innerWidth >= 900)
             return Math.floor((Math.random()*50)+10);
+            else
+            return Math.floor((Math.random()*70)+30);
     }
 }
 var commentsBad = [
